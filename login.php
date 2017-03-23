@@ -33,17 +33,12 @@ $usersArray = $loginDataModel->getUsersArray();
 
 $username = $password = "";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = test_input($_POST[$iniArray[FxDataModel::USER_NAME]]);
-    $password = test_input($_POST[$iniArray[FxDataModel::PASS_WORD]]);
-    function test_input($data) {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
+if (isset($_POST) & !empty($_POST)) {
+    $username = $_POST[$usersArray[LoginDataModel::USER_NAME]];
+    $password = $_POST[$usersArray[LoginDataModel::PASS_WORD]];
+
         //Render fxCalc.php when form is valid
         include 'fxCalc.php';
-    }
 }
 
 
@@ -69,8 +64,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <br />
 <form name="login" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
     <center>
-        <label>Username</label><input name="username" value="" type="text" /><br /><br />
-        <label>Password</label><input name="password" value="" type="password" /><br /><br />
+        <label>Username</label><input name="<?php echo $usersArray[LoginDataModel::USER_NAME] ?>" value="" type="text" /><br /><br />
+        <label>Password</label><input name="<?php echo $usersArray[LoginDataModel::PASS_WORD] ?>" value="" type="password" /><br /><br />
         <input type="submit" value="Login"/>
         <input type="reset"/>
     </center>

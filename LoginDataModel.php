@@ -13,9 +13,9 @@ class LoginDataModel
 {
 
     // declare these variable as constants
-    const USER_NAME = "user.name";
-    const PASS_WORD = "pass.word";
-    const FX_USER_FILE = "fx.user.file";
+    const USER_NAME = 'username';
+    const PASS_WORD = 'password';
+    const FX_USER_FILE = 'fx.user.file';
 
     // Private Data Members
     private $fxUsers;

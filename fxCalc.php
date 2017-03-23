@@ -8,11 +8,9 @@
  * Time: 6:39 AM
  */
 
-$lifetime = 60 * 60 * 24 * 14;    // 2 weeks in seconds
-session_set_cookie_params($lifetime, '/');
-session_start();
 
 require_once('FxDataModel.php');
+require_once ('LoginDataModel.php');
 $fxDataModel = new FxDataModel();
 $fxCurrencies = $fxDataModel->getFxCurrencies();
 $iniArray = $fxDataModel->getIniArray();
@@ -22,6 +20,8 @@ $iniArray = $fxDataModel->getIniArray();
 //$dstCucy = $_POST[$iniArray[FxDataModel::DST_CUCY_KEY]];
 //$fxRates = $fxDataModel->getFxRate($iniArray[ FxDataModel::SRC_CUCY_KEY ], $iniArray[ FxDataModel::DST_CUCY_KEY ]);
 
+//Get the username from the login.php session
+$username = isset($_SESSION[$usersArray[LoginDataModel::USER_NAME]]) ? $_SESSION[$usersArray[LoginDataModel::USER_NAME]] : '';
 
 // Check if the input is empty
 if( array_key_exists( $iniArray[FxDataModel::SRC_CUCY_KEY], $_POST ) ) {
@@ -32,7 +32,7 @@ else{
     $iniArray[FxDataModel::SRC_AMT_KEY] = $_POST[$iniArray[FxDataModel::SRC_AMT_KEY]];
 }
 if( is_numeric($iniArray[ FxDataModel::SRC_AMT_KEY ])){
-    //isset( $iniArray[ FxDataModel::SRC_CUCY_KEY ] ) && is_numeric($iniArray[ FxDataModel::SRC_CUCY_KEY ] );
+    isset( $iniArray[ FxDataModel::SRC_CUCY_KEY ] ) && is_numeric($iniArray[ FxDataModel::SRC_CUCY_KEY ] );
     $iniArray[ FxDataModel::DST_CUCY_KEY ] = $_POST[$iniArray[FxDataModel::DST_CUCY_KEY ]];
     $iniArray[ FxDataModel::SRC_CUCY_KEY ] = $_POST[$iniArray[FxDataModel::SRC_CUCY_KEY]];
     $iniArray[ FxDataModel::DST_AMT_KEY ] = $fxDataModel->getFxRate( $iniArray[FxDataModel::SRC_CUCY_KEY], $iniArray[FxDataModel::DST_CUCY_KEY ] ) * $iniArray[FxDataModel::SRC_AMT_KEY];
@@ -57,7 +57,7 @@ else
 <h1 align="center">Money Banks F/X Calculator</h1>
 <hr/>
 <br/>
-<h1>Welcome <?php echo $username ?></h1>
+<span style="text-align: center;"><h1>Welcome <?php echo $username ?></h1></span>
 <form name="fxCalc" action="fxCalc.php" method="post">
 
     <center>

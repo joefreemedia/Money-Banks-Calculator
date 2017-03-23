@@ -44,8 +44,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //Render fxCalc.php when form is valid
         include 'fxCalc.php';
     }
-}else{
-    return $data;
 }
 
 

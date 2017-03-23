@@ -8,6 +8,10 @@
  * Time: 6:39 AM
  */
 
+$lifetime = 60 * 60 * 24 * 14;    // 2 weeks in seconds
+session_set_cookie_params($lifetime, '/');
+session_start();
+
 require_once('FxDataModel.php');
 $fxDataModel = new FxDataModel();
 $fxCurrencies = $fxDataModel->getFxCurrencies();
@@ -53,7 +57,7 @@ else
 <h1 align="center">Money Banks F/X Calculator</h1>
 <hr/>
 <br/>
-
+<h1>Welcome <?php echo $username ?></h1>
 <form name="fxCalc" action="fxCalc.php" method="post">
 
     <center>

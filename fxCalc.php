@@ -8,8 +8,15 @@
  * Time: 6:39 AM
  */
 
+//Check if the session username is set if not return to login.php
+if(isset($_SESSION['username']))
+{
+    session_start();
+}else{
+    include 'login.php';
+    exit;
+}
 
-session_start();
 require_once('FxDataModel.php');
 require_once ('LoginDataModel.php');
 $fxDataModel = new FxDataModel();

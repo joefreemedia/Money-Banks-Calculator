@@ -9,6 +9,7 @@
  */
 
 
+session_start();
 require_once('FxDataModel.php');
 require_once ('LoginDataModel.php');
 $fxDataModel = new FxDataModel();
@@ -21,7 +22,6 @@ $iniArray = $fxDataModel->getIniArray();
 //$fxRates = $fxDataModel->getFxRate($iniArray[ FxDataModel::SRC_CUCY_KEY ], $iniArray[ FxDataModel::DST_CUCY_KEY ]);
 
 //Get the username from the login.php session
-$username = isset($_SESSION[$usersArray[LoginDataModel::USER_NAME]]) ? $_SESSION[$usersArray[LoginDataModel::USER_NAME]] : '';
 
 // Check if the input is empty
 if( array_key_exists( $iniArray[FxDataModel::SRC_CUCY_KEY], $_POST ) ) {
@@ -57,7 +57,7 @@ else
 <h1 align="center">Money Banks F/X Calculator</h1>
 <hr/>
 <br/>
-<span style="text-align: center;"><h1>Welcome <?php echo $username ?></h1></span>
+<span style="text-align: center;"><h1>Welcome <?php echo $_SESSION['username']; ?></h1></span>
 <form name="fxCalc" action="fxCalc.php" method="post">
 
     <center>

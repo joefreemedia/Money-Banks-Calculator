@@ -19,9 +19,9 @@ $loginDataModel = new LoginDataModel();
 $fxUsers = $loginDataModel->getFxUsers();
 $usersArray = $loginDataModel->getUsersArray();
 
-// Create a users array
-if (empty($_SESSION['fxUsers']))
-    $_SESSION['fxUsers'] = array();
+//Set Session Variables
+$_SESSION['username'] = 'gtrenard';
+$_SESSION['password'] = 'abc123';
 
 //Set username and password to empty stringsf
 $username = "";
